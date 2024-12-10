@@ -97,10 +97,16 @@ jobs:
       #run: cd $OPENWRT_PATH && ./scripts/feeds install -a
 
     - name: List WORKSPACE files
-      run: ls -al $GITHUB_WORKSPACE
+      run:  |
+        [ -e files ] && mv files $OPENWRT_PATH/files
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_PATH/.config
+        ls -al $GITHUB_WORKSPACE
 
     - name: List OPENWRT files
-      run: ls -al $OPENWRT_PATH
+      run:  |
+        [ -e files ] && mv files $OPENWRT_PATH/files
+        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_PATH/.config
+        ls -al $OPENWRT_PATH
 
     - name: Load Custom Configuration
       run: |
