@@ -179,6 +179,7 @@ jobs:
 
     - name: Telegram notification
       run: |
+        MSG="
         ### 🧊 固件版本
           - 固件编译前最后一次➦[主源码](${{ env.REPO_URL }})更新记录
           - 内核版本: ${{ env.KERNEL }}
