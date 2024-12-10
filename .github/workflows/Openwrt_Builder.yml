@@ -20,6 +20,7 @@ env:
   REPO_URL: https://github.com/openwrt/openwrt
   REPO_BRANCH: main
   CONFIG_FILE: x86_64.config
+  ADD_FEEDS: feeds.sh
   DIY_SCRIPT: script.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
@@ -84,7 +85,13 @@ jobs:
         echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_ENV
         COMMIT_HASH=$(git show -s --date=short --format="hash: %H")
         echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_ENV
-  
+
+    - name: Load custom feeds
+      run: |
+        [ -e $FEEDS_CONF ] && mv $FEEDS_CONF openwrt/feeds.conf.default
+        chmod +x $ADD_FEEDS
+        cd $OPENWRT_PATH
+        $GITHUB_WORKSPACE/$ADD_FEEDS
 
     - name: Update feeds
       run: cd $OPENWRT_PATH && ./scripts/feeds update -a
