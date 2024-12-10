@@ -97,9 +97,14 @@ jobs:
       run: |
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE $OPENWRT_PATH/.config
-        chmod +x $DIY_SCRIPT
-        cd $OPENWRT_PATH
-        $GITHUB_WORKSPACE/$DIY_SCRIPT
+        if [ -e $GITHUB_WORKSPACE/$DIY_SCRIPT ]; then
+          chmod +x $GITHUB_WORKSPACE/$DIY_SCRIPT
+          cd $OPENWRT_PATH
+          $GITHUB_WORKSPACE/$DIY_SCRIPT
+        else
+          echo "Error: $GITHUB_WORKSPACE/$DIY_SCRIPT not found!"
+          exit 1
+        fi
 
     - name: Download package
       id: package
