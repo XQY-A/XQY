@@ -34,6 +34,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@main
 
+    - name: List project files
+      run: ls -al $GITHUB_WORKSPACE
+
     - name: Check Server Performance
       run: |
         echo "警告⚠"
@@ -100,7 +103,7 @@ jobs:
         if [ -e $GITHUB_WORKSPACE/$DIY_SCRIPT ]; then
           chmod +x $GITHUB_WORKSPACE/$DIY_SCRIPT
           cd $OPENWRT_PATH
-          ls
+          ls -al
           $GITHUB_WORKSPACE/$DIY_SCRIPT
         else
           echo "Error: $GITHUB_WORKSPACE/$DIY_SCRIPT not found!"
