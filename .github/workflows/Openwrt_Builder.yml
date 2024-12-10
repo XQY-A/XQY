@@ -100,6 +100,7 @@ jobs:
         if [ -e $GITHUB_WORKSPACE/$DIY_SCRIPT ]; then
           chmod +x $GITHUB_WORKSPACE/$DIY_SCRIPT
           cd $OPENWRT_PATH
+          ls
           $GITHUB_WORKSPACE/$DIY_SCRIPT
         else
           echo "Error: $GITHUB_WORKSPACE/$DIY_SCRIPT not found!"
