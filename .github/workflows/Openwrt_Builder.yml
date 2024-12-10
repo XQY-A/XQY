@@ -87,11 +87,11 @@ jobs:
         COMMIT_HASH=$(git show -s --date=short --format="hash: %H")
         echo "COMMIT_HASH=$COMMIT_HASH" >> $GITHUB_ENV
 
-    - name: Update feeds
-      run: cd $OPENWRT_PATH && ./scripts/feeds update -a
+    #- name: Update feeds
+      #run: cd $OPENWRT_PATH && ./scripts/feeds update -a
 
-    - name: Install feeds
-      run: cd $OPENWRT_PATH && ./scripts/feeds install -a
+    #- name: Install feeds
+      #run: cd $OPENWRT_PATH && ./scripts/feeds install -a
 
     - name: Load custom configuration
       run: |
