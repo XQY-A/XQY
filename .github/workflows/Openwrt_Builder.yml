@@ -36,6 +36,9 @@ jobs:
 
     - name: List project files
       run: ls -al $GITHUB_WORKSPACE
+        sudo timedatectl set-timezone "$TZ"
+        sudo mkdir -p /workdir
+        sudo chown $USER:$GROUPS /workdir
 
     - name: Check Server Performance
       run: |
